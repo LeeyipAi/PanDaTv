@@ -9,4 +9,5 @@
     <!--TabBar 字体颜色-->
     <color name="comui_tab_text_color">#929292</color>
     <color name="comui_tab_select_color">#1CD39B</color>
+    <color name="alertdialog_line">#c6c6c6</color>
 </resources>

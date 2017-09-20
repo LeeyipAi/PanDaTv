@@ -15,6 +15,7 @@ import java.io.IOException;
 import leeyip.pandatv.api.NetWorkApi;
 import leeyip.pandatv.net.config.NetWorkConfiguration;
 import leeyip.pandatv.net.http.HttpUtils;
+import leeyip.pandatv.utils.Utils;
 
 
 /**
@@ -38,6 +39,7 @@ public class PanDaApplication extends Application {
         String processName = getProcessName(Process.myPid());
 //        图片加载
         Fresco.initialize(context);
+        Utils.init(this);
         initOkHttpUtils();
     }
 

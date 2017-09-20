@@ -1,24 +1,42 @@
 package leeyip.pandatv.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 
 /**
- * Created by renxl on 2016/11/24.
- * email: renxuelongvip@163.com
+ * <pre>
+ *     author: Blankj
+ *     blog  : http://blankj.com
+ *     time  : 16/12/08
+ *     desc  : Utils初始化相关
+ * </pre>
  */
+public final class Utils {
 
-public class Utils {
+    @SuppressLint("StaticFieldLeak")
+    private static Context context;
 
-    // TODO: 2016/11/26 总感觉怪怪的，有问题，需要好好看看，尤其是一些异常需要及时捕获
-    public static boolean isNetworkConnected(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo != null) {
-            return true;
-        }
-        return false;
+    private Utils() {
+        throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
+    /**
+     * 初始化工具类
+     *
+     * @param context 上下文
+     */
+    public static void init(@NonNull Context context) {
+        Utils.context = context.getApplicationContext();
+    }
+
+    /**
+     * 获取ApplicationContext
+     *
+     * @return ApplicationContext
+     */
+    public static Context getContext() {
+        if (context != null) return context;
+        throw new NullPointerException("u should init first");
+    }
 }

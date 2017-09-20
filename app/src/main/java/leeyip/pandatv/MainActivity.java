@@ -3,7 +3,6 @@ package leeyip.pandatv;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 import com.zhy.autolayout.AutoFrameLayout;
 
@@ -11,9 +10,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import leeyip.pandatv.base.BaseView;
-import leeyip.pandatv.ui.HomeFragment;
+import leeyip.pandatv.ui.home.HomeFragment;
 import leeyip.pandatv.ui.NavigateTabBar;
 import leeyip.pandatv.utils.ThemeUtils;
+import leeyip.pandatv.utils.ToastUtils;
 
 public class MainActivity extends AppCompatActivity implements BaseView{
     private static final String TAG_PAGE_HOME = "首页";
@@ -96,8 +96,7 @@ public class MainActivity extends AppCompatActivity implements BaseView{
 
     private void exit() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            Toast.makeText(getApplicationContext(), "再按一次退出程序",
-                    Toast.LENGTH_SHORT).show();
+            ToastUtils.showShort("再按一次退出程序");
             exitTime = System.currentTimeMillis();
         } else {
             finish();

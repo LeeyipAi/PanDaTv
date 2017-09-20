@@ -38,7 +38,7 @@ public abstract class BaseFragment<M extends BaseModel, P extends BasePresenter>
 
     protected abstract void onEvent();
 
-    //   获取抽取View对象
+    //    获取抽取View对象
     protected abstract BaseView getViewImp();
 
     //    获得抽取接口Model对象

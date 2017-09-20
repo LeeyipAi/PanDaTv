@@ -1,12 +1,19 @@
 package leeyip.pandatv.model.logic.home.bean;
 
+
 import java.io.Serializable;
 
 /**
- * Created by Administrator on 2017/9/19/019.
- */
+ *  作者：gaoyin
+ *  电话：18810474975
+ *  邮箱：18810474975@163.com
+ *  版本号：1.0
+ *  类描述：   首页列表
+ *  备注消息：
+ *  修改时间：2016/12/14 下午6:14
+ **/
 
-public class HomeCateList  implements Serializable {
+public class HomeCateList  implements Serializable{
 
     /**
      * title : 手游
