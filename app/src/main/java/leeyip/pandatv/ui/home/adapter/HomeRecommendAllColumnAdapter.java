@@ -20,37 +20,36 @@ import leeyip.pandatv.model.logic.home.bean.HomeRecommendHotCate;
 import leeyip.pandatv.utils.CalculationUtils;
 
 /**
- *  全部栏目
- *
+ * 全部栏目
  */
 public class HomeRecommendAllColumnAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<HomeRecommendHotCate.RoomListEntity> mRommListEntity;
-    private  Context context;
+    private Context context;
 
-    public HomeRecommendAllColumnAdapter(Context context, List<HomeRecommendHotCate.RoomListEntity> mRommListEntity)
-    {
-          this.context=context;
-          this.mRommListEntity=mRommListEntity;
+    public HomeRecommendAllColumnAdapter(Context context, List<HomeRecommendHotCate.RoomListEntity> mRommListEntity) {
+        this.context = context;
+        this.mRommListEntity = mRommListEntity;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new HotColumnHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_recommend_view,parent,false));
+        return new HotColumnHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_recommend_view, parent, false));
     }
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            if(holder instanceof HotColumnHolder)
-            {
-                bindHotColumun((HotColumnHolder) holder,position);
-            }
+        if (holder instanceof HotColumnHolder) {
+            bindHotColumun((HotColumnHolder) holder, position);
+        }
     }
+
     private void bindHotColumun(HotColumnHolder holder, int position) {
-         holder.img_item_gridview.setImageURI(Uri.parse(mRommListEntity.get(position).getVertical_src()));
-         holder.tv_column_item_nickname.setText(mRommListEntity.get(position).getRoom_name());
-         holder.tv_nickname.setText(mRommListEntity.get(position).getNickname());
+        holder.img_item_gridview.setImageURI(Uri.parse(mRommListEntity.get(position).getVertical_src()));
+        holder.tv_column_item_nickname.setText(mRommListEntity.get(position).getRoom_name());
+        holder.tv_nickname.setText(mRommListEntity.get(position).getNickname());
         holder.tv_online_num.setText(CalculationUtils.getOnLine(mRommListEntity.get(position).getOnline()));
-        if(mRommListEntity.get(position).getCate_id().equals("201"))
-        {
+        holder.rl_live_icon.setVisibility(View.GONE);
+        if (mRommListEntity.get(position).getCate_id().equals("201")) {
             holder.rl_live_icon.setBackgroundResource(R.drawable.search_header_live_type_mobile);
         }
 
@@ -76,30 +75,31 @@ public class HomeRecommendAllColumnAdapter extends RecyclerView.Adapter<Recycler
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return mRommListEntity.size();
     }
-    public class HotColumnHolder extends  BaseViewHolder
-    {
-//        图片
-        public  SimpleDraweeView  img_item_gridview;
-//        房间名称
+
+    public class HotColumnHolder extends BaseViewHolder {
+        //        图片
+        public SimpleDraweeView img_item_gridview;
+        //        房间名称
         public TextView tv_column_item_nickname;
-//        在线人数
+        //        在线人数
         public TextView tv_online_num;
-//        昵称
+        //        昵称
         public TextView tv_nickname;
-//        Icon
+        //        Icon
         public RelativeLayout rl_live_icon;
 
         public HotColumnHolder(View view) {
             super(view);
-            img_item_gridview=(SimpleDraweeView)view.findViewById(R.id.img_item_gridview);
-            tv_column_item_nickname=(TextView)view.findViewById(R.id.tv_column_item_nickname);
-            tv_online_num=(TextView)view.findViewById(R.id.tv_online_num);
-            tv_nickname=(TextView)view.findViewById(R.id.tv_nickname);
-            rl_live_icon=(RelativeLayout)view.findViewById(R.id.rl_live_icon);
+            img_item_gridview = (SimpleDraweeView) view.findViewById(R.id.img_item_gridview);
+            tv_column_item_nickname = (TextView) view.findViewById(R.id.tv_column_item_nickname);
+            tv_online_num = (TextView) view.findViewById(R.id.tv_online_num);
+            tv_nickname = (TextView) view.findViewById(R.id.tv_nickname);
+            rl_live_icon = (RelativeLayout) view.findViewById(R.id.rl_live_icon);
         }
     }
 }

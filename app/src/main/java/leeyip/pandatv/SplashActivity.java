@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -17,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import leeyip.pandatv.utils.SharedPreferenceUtils;
+import leeyip.pandatv.utils.ThemeUtils;
 import leeyip.pandatv.utils.ToastUtils;
 
 public class SplashActivity extends AppCompatActivity {
@@ -31,10 +31,10 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         //全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
+        ThemeUtils.setStatusBarColor(this,R.color.colorPrimary);
         ButterKnife.bind(this);
         initEvent();
         isFirst = SharedPreferenceUtils.getBooleanData("isFirst", true);

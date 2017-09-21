@@ -5,8 +5,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/wh5.0dimens5.0dp"
                 android:orientation="vertical">
-
     <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_marginTop="@dimen/wh1.5dimens1.5dp"
         android:id="@+id/img_item_gridview"
         android:layout_width="@dimen/wh200.0dimens200.0dp"
         android:layout_height="@dimen/wh100.0dimens100.0dp"
@@ -45,26 +45,28 @@
         android:visibility="gone"
         />
 
-    <TextView
-        android:id="@+id/tv_nickname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wh24.0dimens24.0dp"
         android:layout_below="@id/tv_column_item_nickname"
-        android:layout_marginBottom="@dimen/wh5.0dimens5.0dp"
-        android:layout_marginTop="@dimen/wh5.0dimens5.0dp"
-        android:layout_toRightOf="@id/img_nickname"
-        android:ellipsize="end"
-        android:text="超人归来"
-        android:textSize="10sp"
-        android:textStyle="bold"/>
+        android:gravity="center_vertical"
+        >
 
-    <RelativeLayout
-        android:layout_width="@dimen/wh55.0dimens55.0dp"
-        android:layout_height="@dimen/wh18.0dimens18.0dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/tv_column_item_nickname"
-        android:layout_marginTop="@dimen/wh5.0dimens5.0dp"
-        android:gravity="center">
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="超人归来"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="@dimen/wh10.0dimens10.0dp"
+            android:layout_height="@dimen/wh10.0dimens10.0dp"
+            android:layout_marginRight="@dimen/wh4.0dimens4.0dp"
+            android:src="@mipmap/home_reco_online_num_icon"/>
 
         <TextView
             android:id="@+id/tv_online_num"
@@ -74,59 +76,25 @@
             android:text="9999"
             android:textSize="10sp"/>
 
-        <ImageView
-            android:layout_width="@dimen/wh10.0dimens10.0dp"
-            android:layout_height="@dimen/wh10.0dimens10.0dp"
-            android:layout_marginRight="@dimen/wh3.0dimens3.0dp"
-            android:layout_marginTop="@dimen/wh3.0dimens3.0dp"
-            android:layout_toLeftOf="@id/tv_online_num"
-            android:src="@mipmap/home_reco_online_num_icon"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_live_icon"
+        android:minWidth="@dimen/wh70.0dimens70.0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/wh18.0dimens18.0dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/live_item_living"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_game_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="英雄联盟"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            />
     </RelativeLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/wh100.0dimens100.0dp">
-
-            <RelativeLayout
-                android:id="@+id/rl_live_icon"
-                android:layout_width="@dimen/wh60.0dimens60.0dp"
-                android:layout_height="@dimen/wh18.0dimens18.0dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/search_header_live_type_pc"
-                android:gravity="center">
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/wh55.0dimens55.0dp"
-                android:layout_height="@dimen/wh18.0dimens18.0dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/recommend_online_bg"
-                android:gravity="center"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/tv_online_num1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:text="9999"
-                    android:textColor="#ffffff"
-                    android:textSize="10sp"/>
-
-                <ImageView
-                    android:layout_width="@dimen/wh10.0dimens10.0dp"
-                    android:layout_height="@dimen/wh10.0dimens10.0dp"
-                    android:layout_marginRight="@dimen/wh3.0dimens3.0dp"
-                    android:layout_marginTop="@dimen/wh3.0dimens3.0dp"
-                    android:layout_toLeftOf="@id/tv_online_num1"
-                    android:src="@mipmap/home_reco_online_num_icon"/>
-            </RelativeLayout>
-        </RelativeLayout>
-
-    </FrameLayout>
 </RelativeLayout>

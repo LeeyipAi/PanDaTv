@@ -17,9 +17,10 @@
         android:orientation="vertical"
         >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/wh50.0dimens50.0dp">
+            android:layout_height="@dimen/wh50.0dimens50.0dp"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/img_column_icon"
@@ -29,59 +30,35 @@
                 android:layout_marginBottom="@dimen/wh10.0dimens10.0dp"
                 android:layout_marginLeft="@dimen/wh5.0dimens5.0dp"
                 android:layout_marginRight="@dimen/wh5.0dimens5.0dp"
-                android:elevation="2dp"/>
+                android:elevation="2dp"
+                android:visibility="gone"/>
+
+            <View
+                android:layout_width="@dimen/wh30.0dimens30.0dp"
+                android:layout_height="@dimen/wh4.0dimens4.0dp"
+                android:layout_marginRight="@dimen/wh30.0dimens30.0dp"
+                android:background="@color/colorPrimary"
+                />
 
             <TextView
                 android:id="@+id/tv_column_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/wh15.0dimens15.0dp"
-                android:layout_marginTop="@dimen/wh10.0dimens10.0dp"
-                android:layout_toRightOf="@+id/img_column_icon"
                 android:elevation="2dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:textColor="#393939"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
 
-            <RelativeLayout
-                android:id="@+id/rl_column_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                >
+            <View
+                android:layout_width="@dimen/wh30.0dimens30.0dp"
+                android:layout_height="@dimen/wh4.0dimens4.0dp"
+                android:layout_marginLeft="@dimen/wh30.0dimens30.0dp"
+                android:background="@color/colorPrimary"
+                />
 
-                <ImageView
-                    android:id="@+id/img_column_more"
-                    android:layout_width="@dimen/wh15.0dimens15.0dp"
-                    android:layout_height="@dimen/wh15.0dimens15.0dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="@dimen/wh10.0dimens10.0dp"
-                    android:layout_marginRight="@dimen/wh12.0dimens12.0dp"
-                    android:elevation="2dp"
-                    android:src="@mipmap/icon_right_arrow_gray"/>
-
-                <TextView
-                    android:id="@+id/tv_column_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/wh2.0dimens2.0dp"
-                    android:layout_marginTop="@dimen/wh10.0dimens10.0dp"
-                    android:layout_toLeftOf="@+id/img_column_more"
-                    android:elevation="2dp"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="更多"
-                    android:textColor="#b0b0b0"
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
-        </RelativeLayout>
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_column_list"
@@ -89,5 +66,31 @@
             android:layout_height="wrap_content"
             >
         </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:id="@+id/rl_column_more"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wh40.0dimens40.0dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/tv_column_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="查看更多"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/img_column_more"
+                android:layout_width="@dimen/wh30.0dimens30.0dp"
+                android:layout_height="@dimen/wh20.0dimens20.0dp"
+                android:src="@drawable/icon_arrow"/>
+
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

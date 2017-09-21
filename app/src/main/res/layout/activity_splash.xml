@@ -7,16 +7,26 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     tools:context="leeyip.pandatv.SplashActivity">
+
     <TextView
         android:id="@+id/tv_to_main"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="熊猫直播"
-        android:textSize="20sp"
-        android:layout_margin="30dp"
-        android:textColor="@color/colorPrimary"
+        android:text="www.panda.tv"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        />
+
+    <ImageView
+        android:id="@+id/splash_bg"
+        android:layout_above="@id/tv_to_main"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/wh120.0dimens120.0dp"
+        android:layout_height="@dimen/wh56.0dimens56.0dp"
+        android:src="@drawable/ic_home_logo"
         />
 
     <com.facebook.drawee.view.SimpleDraweeView
@@ -24,6 +34,7 @@
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tv_to_main"
+        android:layout_above="@id/splash_bg"
         />
+
 </com.zhy.autolayout.AutoRelativeLayout>

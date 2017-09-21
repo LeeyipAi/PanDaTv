@@ -10,8 +10,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import leeyip.pandatv.base.BaseView;
-import leeyip.pandatv.ui.home.HomeFragment;
 import leeyip.pandatv.ui.NavigateTabBar;
+import leeyip.pandatv.ui.home.fragment.HomeFragment;
 import leeyip.pandatv.utils.ThemeUtils;
 import leeyip.pandatv.utils.ToastUtils;
 

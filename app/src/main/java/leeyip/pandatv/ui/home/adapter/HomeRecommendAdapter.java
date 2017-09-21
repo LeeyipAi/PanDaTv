@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -125,7 +124,7 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
             bindColumnHolder((ColumnViewHolder) holder, position);
         } else if (holder instanceof ColumnViewHolder && position == 2) {
             bindFaceScoreColumnHolder((ColumnViewHolder) holder, position, true);
-        } else if (holder instanceof ColumnViewHolder && position == 3) {
+        } else {
             bindAllColumnHolder((ColumnViewHolder) holder, position);
         }
     }
@@ -241,7 +240,7 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
         //        栏目 名称
         public TextView tv_column_name;
         //        加载更多
-        public RelativeLayout rl_column_more;
+        public LinearLayout rl_column_more;
         //        栏目列表
         public RecyclerView rv_column_list;
 
@@ -251,7 +250,7 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
             super(itemView);
             img_column_icon = (ImageView) itemView.findViewById(R.id.img_column_icon);
             tv_column_name = (TextView) itemView.findViewById(R.id.tv_column_name);
-            rl_column_more = (RelativeLayout) itemView.findViewById(R.id.rl_column_more);
+            rl_column_more = (LinearLayout) itemView.findViewById(R.id.rl_column_more);
             rv_column_list = (RecyclerView) itemView.findViewById(R.id.rv_column_list);
             item_home_recommed_girdview = (LinearLayout) itemView.findViewById(R.id.item_home_recommed_girdview);
         }
