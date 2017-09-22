@@ -2,7 +2,9 @@ package leeyip.pandatv.ui.home.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import leeyip.pandatv.R;
 import leeyip.pandatv.model.logic.home.bean.HomeRecommendHotCate;
+import leeyip.pandatv.ui.video.LiveDetailsActivity;
 import leeyip.pandatv.utils.CalculationUtils;
 
 /**
@@ -57,21 +60,22 @@ public class HomeRecommendAllColumnAdapter extends RecyclerView.Adapter<Recycler
             @Override
             public void onClick(View view) {
 //                颜值栏目 竖屏播放
-                /*if(mRommListEntity.get(position).getCate_id().equals("201"))
-                {
-                    Intent intent = new Intent(context, PhoneLiveVideoActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("Room_id",mRommListEntity.get(position).getRoom_id());
-                    bundle.putString("Img_Path", mRommListEntity.get(position).getVertical_src());
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-                }else {
-                    Intent intent = new Intent(context, PcLiveVideoActivity.class);
+//                if(mRommListEntity.get(position).getCate_id().equals("201"))
+//                {
+//                    Intent intent = new Intent(context, PhoneLiveVideoActivity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("Room_id",mRommListEntity.get(position).getRoom_id());
+//                    bundle.putString("Img_Path", mRommListEntity.get(position).getVertical_src());
+//                    intent.putExtras(bundle);
+//                    context.startActivity(intent);
+//                }else {
+                    Intent intent = new Intent(context, LiveDetailsActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("Room_id", mRommListEntity.get(position).getRoom_id());
+                    bundle.putString("Room_name", mRommListEntity.get(position).getRoom_name());
                     intent.putExtras(bundle);
                     context.startActivity(intent);
-                }*/
+//                }
             }
         });
     }

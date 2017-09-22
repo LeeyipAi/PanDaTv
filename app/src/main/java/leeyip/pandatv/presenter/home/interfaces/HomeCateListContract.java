@@ -17,10 +17,12 @@ public interface HomeCateListContract {
     interface View extends BaseView {
         void getHomeAllList(List<HomeCateList> cateLists);
     }
-    interface  Model extends BaseModel {
+
+    interface Model extends BaseModel {
         Observable getHomeCateList(Context context);
     }
-    abstract class Presenter extends BasePresenter<View,Model> {
-        public abstract void  getHomeCateList();
+
+    abstract class Presenter extends BasePresenter<View, Model> {
+        public abstract void getHomeCateList();
     }
 }

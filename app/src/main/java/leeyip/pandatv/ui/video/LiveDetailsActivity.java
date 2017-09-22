@@ -10,14 +10,18 @@ import cn.jzvd.JZVideoPlayerStandard;
 import leeyip.pandatv.R;
 import leeyip.pandatv.base.BaseActivity;
 import leeyip.pandatv.base.BaseView;
+import leeyip.pandatv.model.logic.video.LiveVideoModelLogic;
+import leeyip.pandatv.model.logic.video.bean.TempLiveVideoInfo;
+import leeyip.pandatv.presenter.video.impl.LiveVideoPresenter;
+import leeyip.pandatv.presenter.video.interfaces.LiveVideoContract;
 
-public class LiveDetailsActivity extends BaseActivity {
+public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveVideoPresenter> implements LiveVideoContract.View {
 
     @BindView(R.id.videoplayer)
     JZVideoPlayerStandard mVideoplayer;
     private SVProgressHUD mSvProgressHUD;
-
-    String path = "http://hls3a.douyucdn.cn/live/2046501r3kM7UZzJ_550/playlist.m3u8?wsSecret=f348bb6ad31586d94542e796b2b0cccd&wsTime=1505982321&token=h5-douyu-0-2046501-f305122d521735dd3b2fe5eb150c2080&did=h5_did";
+    private String Room_id;
+    private String Room_name;
 
     @Override
     protected int getLayoutId() {
@@ -27,7 +31,9 @@ public class LiveDetailsActivity extends BaseActivity {
     @Override
     protected void onInitView(Bundle bundle) {
         mSvProgressHUD = new SVProgressHUD(this);
-        mVideoplayer.setUp(path, JZVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "直播");
+        Room_id = getIntent().getExtras().getString("Room_id");
+        Room_name = getIntent().getExtras().getString("Room_name");
+        mPresenter.getPresenterPcLiveVideoInfo(Room_id);
     }
 
     @Override
@@ -37,7 +43,7 @@ public class LiveDetailsActivity extends BaseActivity {
 
     @Override
     protected BaseView getView() {
-        return null;
+        return this;
     }
 
     @Override
@@ -52,5 +58,20 @@ public class LiveDetailsActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         JZVideoPlayer.releaseAllVideos();
+    }
+
+    @Override
+    public void showErrorWithStatus(String msg) {
+        runOnUiThread(() -> mSvProgressHUD.showErrorWithStatus("主播还在赶来的路上~~"));
+    }
+
+    @Override
+    public void getViewPcLiveVideoInfo(TempLiveVideoInfo mLiveVideoInfo) {
+        String url = mLiveVideoInfo.getData().getHls_url();
+        runOnUiThread(() -> {
+            mVideoplayer.setUp(url, JZVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, Room_name);
+            mVideoplayer.startVideo();
+        });
+
     }
 }

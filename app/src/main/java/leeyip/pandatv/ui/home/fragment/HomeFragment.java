@@ -116,6 +116,7 @@ public class HomeFragment extends BaseFragment<HomeCateListModelLogic, HomeCateL
                 break;
             case R.id.img_message:
                 ToastUtils.showShort("message");
+                startActivity(new Intent(getActivity(), LiveDetailsActivity.class));
                 break;
         }
     }

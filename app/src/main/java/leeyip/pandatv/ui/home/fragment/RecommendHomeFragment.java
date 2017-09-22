@@ -85,7 +85,8 @@ public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic,
 
     @Override
     protected void onEvent() {
-        refresh();
+        mRecommendSrefresh.post(() -> mRecommendSrefresh.setRefreshing(true));
+        onRefresh();
     }
 
     @Override

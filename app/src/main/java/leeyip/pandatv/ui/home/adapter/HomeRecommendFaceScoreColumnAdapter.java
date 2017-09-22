@@ -2,7 +2,9 @@ package leeyip.pandatv.ui.home.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import leeyip.pandatv.R;
 import leeyip.pandatv.model.logic.home.bean.HomeFaceScoreColumn;
+import leeyip.pandatv.ui.video.LiveDetailsActivity;
 import leeyip.pandatv.utils.CalculationUtils;
 
 
@@ -56,6 +59,18 @@ public class HomeRecommendFaceScoreColumnAdapter extends RecyclerView.Adapter<Ho
 //                context.startActivity(intent);
 //            }
 //        });
+
+        holder.img_item_gridview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, LiveDetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Room_id", mHomeFaceScoreColumn.get(position).getRoom_id());
+                bundle.putString("Room_name", mHomeFaceScoreColumn.get(position).getRoom_name());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
