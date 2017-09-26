@@ -1,5 +1,6 @@
 package leeyip.pandatv.ui.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.bigkoo.svprogresshud.SVProgressHUD;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ import leeyip.pandatv.presenter.home.impl.HomeRecommendPresenterImp;
 import leeyip.pandatv.presenter.home.interfaces.HomeRecommendContract;
 import leeyip.pandatv.ui.home.adapter.HomeCarouselAdapter;
 import leeyip.pandatv.ui.home.adapter.HomeRecommendAdapter;
+import leeyip.pandatv.ui.video.LiveDetailsActivity;
 
 import static leeyip.pandatv.R.id.recommed_banner;
 
@@ -34,7 +37,7 @@ import static leeyip.pandatv.R.id.recommed_banner;
  * Created by Administrator on 2017/9/20/020.
  */
 
-public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic, HomeRecommendPresenterImp> implements BGABanner.Delegate, HomeRecommendContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic, HomeRecommendPresenterImp> implements BGABanner.Delegate<SimpleDraweeView, String>, HomeRecommendContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     SVProgressHUD svProgressHUD;
     @BindView(R.id.recommend_content_recyclerview)
@@ -100,11 +103,6 @@ public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic,
     }
 
     @Override
-    public void onBannerItemClick(BGABanner banner, View itemView, Object model, int position) {
-
-    }
-
-    @Override
     public void showErrorWithStatus(String msg) {
         svProgressHUD.showErrorWithStatus(msg);
         mRecommendSrefresh.setRefreshing(false);
@@ -164,5 +162,15 @@ public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic,
         new Handler().postDelayed(() -> {
             refresh();
         }, 500);
+    }
+
+    @Override
+    public void onBannerItemClick(BGABanner banner, SimpleDraweeView itemView, String model, int position) {
+        Intent intent = new Intent(getActivity(), LiveDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("Room_id",mHomeCarousel.get(position).getRoom().getRoom_id());
+        bundle.putString("Room_name",mHomeCarousel.get(position).getRoom().getRoom_name());
+        intent.putExtras(bundle);
+        getActivity().startActivity(intent);
     }
 }
