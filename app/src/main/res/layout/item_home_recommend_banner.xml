@@ -10,7 +10,7 @@
         app:banner_isNumberIndicator="true"
         app:banner_numberIndicatorBackground="@drawable/shape_number_indicator_background"
         app:banner_numberIndicatorTextColor="@android:color/white"
-        app:banner_numberIndicatorTextSize="10sp"
+        app:banner_numberIndicatorTextSize="12sp"
         app:banner_pointAutoPlayAble="true"
         app:banner_pointContainerBackground="@android:color/transparent"
         android:layout_alignParentTop="true"

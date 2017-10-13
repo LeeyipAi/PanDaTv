@@ -2,7 +2,6 @@ package leeyip.pandatv.ui.home.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -12,6 +11,7 @@ import com.bigkoo.svprogresshud.SVProgressHUD;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,7 +47,6 @@ public class HomeFragment extends BaseFragment<HomeCateListModelLogic, HomeCateL
     ImageView imgHistory;
     @BindView(R.id.img_message)
     ImageView imgMessage;
-    Handler handler = new Handler();
     @BindView(R.id.sliding_tab)
     SlidingTabLayout slidingTab;
     @BindView(R.id.viewpager)
@@ -84,6 +83,7 @@ public class HomeFragment extends BaseFragment<HomeCateListModelLogic, HomeCateL
 
     @Override
     public void getHomeAllList(List<HomeCateList> cateLists) {
+        new HashMap<>();
         mTitles = new String[cateLists.size() + 1];
         mTitles[0] = "推荐";
         for (int i = 0; i < cateLists.size(); i++) {

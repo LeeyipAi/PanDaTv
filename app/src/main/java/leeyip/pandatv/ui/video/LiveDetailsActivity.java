@@ -34,6 +34,7 @@ public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveV
         Room_id = getIntent().getExtras().getString("Room_id");
         Room_name = getIntent().getExtras().getString("Room_name");
         mPresenter.getPresenterPcLiveVideoInfo(Room_id);
+        initTab();
     }
 
     @Override
@@ -58,6 +59,13 @@ public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveV
     protected void onPause() {
         super.onPause();
         JZVideoPlayer.releaseAllVideos();
+    }
+
+    /**
+     * 初始化Tab
+     */
+    private void initTab() {
+
     }
 
     @Override

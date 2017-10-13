@@ -82,7 +82,7 @@
     </style>
     <style name="BannerDefaultStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/wh140.0dimens140.0dp</item>
+        <item name="android:layout_height">@dimen/wh160.0dimens160.0dp</item>
         <!-- 自定义属性在styles.xml中不需要命名空间,直接用属性名就可以了 -->
         <!-- 开启自动轮播 -->
         <item name="banner_pointAutoPlayAble">true</item>
@@ -103,7 +103,7 @@
         <!-- 页码切换过程的时间长度 -->
         <item name="banner_pageChangeDuration">800</item>
         <!-- 提示文案的文字大小 -->
-        <item name="banner_tipTextSize">10sp</item>
+        <item name="banner_tipTextSize">12sp</item>
         <!-- 提示文案的文字颜色 -->
         <item name="banner_tipTextColor">@android:color/white</item>
         <!--&lt;!&ndash; 加载网络数据时覆盖在BGABanner最上层的占位图 &ndash;&gt;-->

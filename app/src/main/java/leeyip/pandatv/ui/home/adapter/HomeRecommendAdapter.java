@@ -1,6 +1,8 @@
 package leeyip.pandatv.ui.home.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import leeyip.pandatv.R;
 import leeyip.pandatv.model.logic.home.bean.HomeFaceScoreColumn;
 import leeyip.pandatv.model.logic.home.bean.HomeHotColumn;
 import leeyip.pandatv.model.logic.home.bean.HomeRecommendHotCate;
+import leeyip.pandatv.ui.home.activity.HomeRecommendFaceScoreActivity;
 
 /**
  * Created by Administrator on 2017/9/20/020.
@@ -138,7 +141,7 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
     private void bindAllColumnHolder(ColumnViewHolder holder, int position) {
         holder.img_column_icon.setImageResource(R.mipmap.icon_column);
         holder.tv_column_name.setText(mHomeRecommendHotCate.get(position - 2).getTag_name());
-        holder.rv_column_list.setLayoutManager(new FullyGridLayoutManager(holder.rv_column_list.getContext(), 2, GridLayoutManager.VERTICAL, false));
+        holder.rv_column_list.setLayoutManager(new GridLayoutManager(holder.rv_column_list.getContext(), 2, GridLayoutManager.VERTICAL, false));
         mAllColumnAdapter = new HomeRecommendAllColumnAdapter(holder.rv_column_list.getContext(), mHomeRecommendHotCate.get(position - 2).getRoom_list());
         holder.rv_column_list.setAdapter(mAllColumnAdapter);
         holder.rl_column_more.setOnClickListener(new View.OnClickListener() {
@@ -164,17 +167,17 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
     private void bindFaceScoreColumnHolder(ColumnViewHolder holder, int position, boolean isItem) {
 
         holder.img_column_icon.setImageResource(R.mipmap.icon_reco_mobile);
-        holder.tv_column_name.setText("颜值");
+        holder.tv_column_name.setText("熊猫星颜");
         holder.rv_column_list.setLayoutManager(new FullyGridLayoutManager(holder.rv_column_list.getContext(), 2, GridLayoutManager.VERTICAL, false));
         holder.rv_column_list.setAdapter(mFaceScoreColumnAdapter);
         holder.rl_column_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(context, HomeRecommendFaceScoreActivity.class);
+                Intent intent = new Intent(context, HomeRecommendFaceScoreActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("title", holder.tv_column_name.getText().toString());
                 intent.putExtras(bundle);
-                context.startActivity(intent);*/
+                context.startActivity(intent);
             }
         });
     }
@@ -221,6 +224,7 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @param position
      */
     private void bindColumnHolder(ColumnViewHolder holder, int position) {
+        holder.rl_column_more.setVisibility(View.GONE);
         holder.img_column_icon.setImageResource(R.mipmap.reco_game_txt_icon);
         holder.tv_column_name.setText("最热");
         holder.rv_column_list.setLayoutManager(new FullyGridLayoutManager(holder.rv_column_list.getContext(), 2, GridLayoutManager.VERTICAL, false));

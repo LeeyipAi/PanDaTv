@@ -31,8 +31,6 @@ import leeyip.pandatv.ui.home.adapter.HomeCarouselAdapter;
 import leeyip.pandatv.ui.home.adapter.HomeRecommendAdapter;
 import leeyip.pandatv.ui.video.LiveDetailsActivity;
 
-import static leeyip.pandatv.R.id.recommed_banner;
-
 /**
  * Created by Administrator on 2017/9/20/020.
  */
@@ -68,7 +66,7 @@ public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic,
         mRecommendSrefresh.setColorSchemeResources(R.color.comui_tab_select_color);
         View headerView = LayoutInflater.from(mContext).inflate(R.layout.item_home_recommend_banner, mRecommendContentRecyclerview, false);
         mAdapter.setHeaderView(headerView);
-        mBanner = (BGABanner) headerView.findViewById(recommed_banner);
+        mBanner = (BGABanner) headerView.findViewById(R.id.recommed_banner);
         mBanner.setDelegate(this);
         mBanner.setAdapter(mRecommedBannerAdapter);
     }
@@ -168,8 +166,8 @@ public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic,
     public void onBannerItemClick(BGABanner banner, SimpleDraweeView itemView, String model, int position) {
         Intent intent = new Intent(getActivity(), LiveDetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("Room_id",mHomeCarousel.get(position).getRoom().getRoom_id());
-        bundle.putString("Room_name",mHomeCarousel.get(position).getRoom().getRoom_name());
+        bundle.putString("Room_id", mHomeCarousel.get(position).getRoom().getRoom_id());
+        bundle.putString("Room_name", mHomeCarousel.get(position).getRoom().getRoom_name());
         intent.putExtras(bundle);
         getActivity().startActivity(intent);
     }

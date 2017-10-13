@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -22,13 +23,22 @@ import leeyip.pandatv.ui.video.LiveDetailsActivity;
 import leeyip.pandatv.utils.CalculationUtils;
 
 
-public class HomeRecommendFaceScoreColumnAdapter extends RecyclerView.Adapter<HomeRecommendFaceScoreColumnAdapter.FaceScoreColumnHolder> {
+public class HomeRecommendFaceScoreColumnAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<HomeFaceScoreColumn> mHomeFaceScoreColumn;
     private Context context;
+    private View view;
+    private FootViewHolder mFootViewHolder;
+    boolean isBottom = false;
 
     public HomeRecommendFaceScoreColumnAdapter(Context context) {
         this.context = context;
         this.mHomeFaceScoreColumn = new ArrayList<HomeFaceScoreColumn>();
+    }
+
+    public HomeRecommendFaceScoreColumnAdapter(Context context, View view) {
+        this.context = context;
+        this.mHomeFaceScoreColumn = new ArrayList<HomeFaceScoreColumn>();
+        this.view = view;
     }
 
     public void getFaceScoreColumn(List<HomeFaceScoreColumn> mHomeFaceScoreColumn) {
@@ -38,16 +48,24 @@ public class HomeRecommendFaceScoreColumnAdapter extends RecyclerView.Adapter<Ho
     }
 
     public void getFaceScoreColumnLoadMore(List<HomeFaceScoreColumn> mHomeFaceScoreColumn) {
-//          this.mHomeFaceScoreColumn.clear();
+        if (mHomeFaceScoreColumn.isEmpty()) {
+            isBottom = true;
+        }else {
+            isBottom = false;
+        }
         this.mHomeFaceScoreColumn.addAll(mHomeFaceScoreColumn);
         notifyDataSetChanged();
     }
 
     private void bindFaceScoreHolder(FaceScoreColumnHolder holder, int position) {
-        holder.img_item_gridview.setImageURI(Uri.parse(mHomeFaceScoreColumn.get(position).getVertical_src()));
-        holder.tv_column_item_nickname.setText(mHomeFaceScoreColumn.get(position).getNickname());
-        holder.tv_online_num.setText(CalculationUtils.getOnLine(mHomeFaceScoreColumn.get(position).getOnline()));
-        holder.tv_facescore_city.setText(mHomeFaceScoreColumn.get(position).getAnchor_city());
+        int position1 = position;
+        if (view != null) {
+            position1 = position - 1;
+        }
+        holder.img_item_gridview.setImageURI(Uri.parse(mHomeFaceScoreColumn.get(position1).getVertical_src()));
+        holder.tv_column_item_nickname.setText(mHomeFaceScoreColumn.get(position1).getNickname());
+        holder.tv_online_num.setText(CalculationUtils.getOnLine(mHomeFaceScoreColumn.get(position1).getOnline()));
+        holder.tv_facescore_city.setText(mHomeFaceScoreColumn.get(position1).getAnchor_city());
 //        holder.img_item_gridview.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -65,8 +83,8 @@ public class HomeRecommendFaceScoreColumnAdapter extends RecyclerView.Adapter<Ho
             public void onClick(View v) {
                 Intent intent = new Intent(context, LiveDetailsActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("Room_id", mHomeFaceScoreColumn.get(position).getRoom_id());
-                bundle.putString("Room_name", mHomeFaceScoreColumn.get(position).getRoom_name());
+                bundle.putString("Room_id", mHomeFaceScoreColumn.get(view == null ? position : position - 1).getRoom_id());
+                bundle.putString("Room_name", mHomeFaceScoreColumn.get(view == null ? position : position - 1).getRoom_name());
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             }
@@ -74,21 +92,53 @@ public class HomeRecommendFaceScoreColumnAdapter extends RecyclerView.Adapter<Ho
     }
 
     @Override
-    public FaceScoreColumnHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new FaceScoreColumnHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_recommend_facescore, parent, false));
+    public int getItemViewType(int position) {
+        if (position + 1 == getItemCount() && view != null) {
+            return 2;
+        } else {
+            return view == null ? super.getItemViewType(position) : position == 0 ? 1 : super.getItemViewType(position);
+        }
     }
 
     @Override
-    public void onBindViewHolder(FaceScoreColumnHolder holder, int position) {
-        bindFaceScoreHolder(holder, position);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == 2) {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_foot, parent,
+                    false);
+            mFootViewHolder = new FootViewHolder(view);
+            return mFootViewHolder;
+        } else {
+            return viewType != 1 ? new FaceScoreColumnHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_recommend_facescore, parent, false)) : new BannerViewHolder(view);
+        }
+    }
+
+    boolean flag = true;
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof FaceScoreColumnHolder) {
+            bindFaceScoreHolder((FaceScoreColumnHolder) holder, position);
+        } else if (holder instanceof FootViewHolder) {
+            if (isBottom) {
+                ((FootViewHolder) holder).mProgressBar.setVisibility(View.GONE);
+                ((FootViewHolder) holder).tv.setText("我是有底线的");
+            }
+            ((FootViewHolder) holder).view.setVisibility(flag ? View.INVISIBLE : View.VISIBLE);
+        } else {
+
+        }
+    }
+
+    public void setVisibility() {
+        flag = false;
     }
 
     @Override
     public int getItemCount() {
-        return mHomeFaceScoreColumn.size();
+        return view == null ? mHomeFaceScoreColumn.size() : mHomeFaceScoreColumn.size() + 2;
     }
 
-    public class FaceScoreColumnHolder extends RecyclerView.ViewHolder {
+    static class FaceScoreColumnHolder extends RecyclerView.ViewHolder {
         public SimpleDraweeView img_item_gridview;
         public TextView tv_column_item_nickname;
         public TextView tv_online_num;
@@ -100,6 +150,26 @@ public class HomeRecommendFaceScoreColumnAdapter extends RecyclerView.Adapter<Ho
             tv_column_item_nickname = (TextView) view.findViewById(R.id.tv_column_item_nickname);
             tv_online_num = (TextView) view.findViewById(R.id.tv_online_num);
             tv_facescore_city = (TextView) view.findViewById(R.id.tv_facescore_city);
+        }
+    }
+
+    static class BannerViewHolder extends RecyclerView.ViewHolder {
+
+        public BannerViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    static class FootViewHolder extends RecyclerView.ViewHolder {
+        public View view;
+        public ProgressBar mProgressBar;
+        public TextView tv;
+
+        public FootViewHolder(View view) {
+            super(view);
+            this.view = view;
+            mProgressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+            tv = (TextView) view.findViewById(R.id.tv);
         }
     }
 }
