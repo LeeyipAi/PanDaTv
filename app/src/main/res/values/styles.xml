@@ -8,6 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--滑动返回主题-->
+    <style name="AppTheme.NoActionBar.AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--设置窗口为透明窗体，所以APP启动时的黑白屏也变成了透明的-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+    </style>
+
+    <!--主界面主题-->
+    <style name="AppTheme.NoActionBar.AppBaseThemeMain" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+    </style>
+
     <style name="BannerDefaultStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/wh160.0dimens160.0dp</item>
@@ -36,5 +49,13 @@
         <item name="banner_tipTextColor">@android:color/white</item>
         <!--&lt;!&ndash; 加载网络数据时覆盖在BGABanner最上层的占位图 &ndash;&gt;-->
         <!--<item name="banner_placeholderDrawable">@drawable/holder</item>-->
+    </style>
+
+    <!-- animation 样式 -->
+    <style name="activityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_left_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
     </style>
 </resources>

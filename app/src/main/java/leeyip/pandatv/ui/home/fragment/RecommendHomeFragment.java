@@ -58,8 +58,6 @@ public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic,
         mRecommendContentRecyclerview.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new HomeRecommendAdapter(mContext);
         mHomeCarousel = new ArrayList<HomeCarousel>();
-        pool.setMaxRecycledViews(mAdapter.getItemViewType(0), 500);
-        mRecommendContentRecyclerview.setRecycledViewPool(pool);
         mRecommendContentRecyclerview.setAdapter(mAdapter);
         mRecommedBannerAdapter = new HomeCarouselAdapter();
         mRecommendSrefresh.setOnRefreshListener(this);
@@ -70,19 +68,6 @@ public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic,
         mBanner.setDelegate(this);
         mBanner.setAdapter(mRecommedBannerAdapter);
     }
-
-    final RecyclerView.RecycledViewPool pool = new RecyclerView.RecycledViewPool() {
-        @Override
-        public void putRecycledView(RecyclerView.ViewHolder scrap) {
-            super.putRecycledView(scrap);
-        }
-
-        @Override
-        public RecyclerView.ViewHolder getRecycledView(int viewType) {
-            final RecyclerView.ViewHolder recycledView = super.getRecycledView(viewType);
-            return recycledView;
-        }
-    };
 
     @Override
     protected void onEvent() {
@@ -139,8 +124,6 @@ public class RecommendHomeFragment extends BaseFragment<HomeRecommendModelLogic,
     //热门
     @Override
     public void getViewHotCate(List<HomeRecommendHotCate> homeRecommendHotCates) {
-//        去掉颜值栏目
-        homeRecommendHotCates.remove(1);
         mAdapter.getAllColumn(homeRecommendHotCates);
     }
 

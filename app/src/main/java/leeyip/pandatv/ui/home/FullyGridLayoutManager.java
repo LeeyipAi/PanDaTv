@@ -1,4 +1,4 @@
-package leeyip.pandatv.ui.home.adapter;
+package leeyip.pandatv.ui.home;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;

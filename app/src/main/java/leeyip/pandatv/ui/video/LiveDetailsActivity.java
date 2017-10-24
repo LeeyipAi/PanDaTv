@@ -1,6 +1,7 @@
 package leeyip.pandatv.ui.video;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.bigkoo.svprogresshud.SVProgressHUD;
 
@@ -11,6 +12,7 @@ import leeyip.pandatv.R;
 import leeyip.pandatv.base.BaseActivity;
 import leeyip.pandatv.base.BaseView;
 import leeyip.pandatv.model.logic.video.LiveVideoModelLogic;
+import leeyip.pandatv.model.logic.video.bean.RoomDetailsInfo;
 import leeyip.pandatv.model.logic.video.bean.TempLiveVideoInfo;
 import leeyip.pandatv.presenter.video.impl.LiveVideoPresenter;
 import leeyip.pandatv.presenter.video.interfaces.LiveVideoContract;
@@ -34,6 +36,7 @@ public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveV
         Room_id = getIntent().getExtras().getString("Room_id");
         Room_name = getIntent().getExtras().getString("Room_name");
         mPresenter.getPresenterPcLiveVideoInfo(Room_id);
+        mPresenter.getPresenterRoomDetails(Room_id);
         initTab();
     }
 
@@ -82,4 +85,10 @@ public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveV
         });
 
     }
+
+    @Override
+    public void getRoomDetails(RoomDetailsInfo baseResponse) {
+        Log.e("输出",baseResponse.toString());
+    }
+
 }

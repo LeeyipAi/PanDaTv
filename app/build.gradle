@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.neenbedankt.android-apt'//增加这一句
 apply plugin: 'me.tatarka.retrolambda'
 
@@ -37,6 +39,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.zhy:autolayout:1.4.5'
     compile 'com.jakewharton:butterknife:8.1.0'
@@ -60,9 +63,13 @@ dependencies {
     compile 'cn.bingoogolapple:bga-banner:2.1.5@aar'
     compile 'com.android.support:support-v4:25.0.1'
     compile 'cn.jzvd:jiaozivideoplayer:6.0.0'
+    compile 'com.android.support:design:25.1.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.7.7'
     compile 'com.github.ctiao:DanmakuFlameMaster:0.4.6'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
+}
+repositories {
+    mavenCentral()
 }

@@ -114,23 +114,29 @@ public class HomeRecommendFaceScoreColumnAdapter extends RecyclerView.Adapter<Re
 
     boolean flag = true;
 
+    public void setVisibility() {
+        flag = false;
+    }
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof FaceScoreColumnHolder) {
             bindFaceScoreHolder((FaceScoreColumnHolder) holder, position);
         } else if (holder instanceof FootViewHolder) {
             if (isBottom) {
-                ((FootViewHolder) holder).mProgressBar.setVisibility(View.GONE);
-                ((FootViewHolder) holder).tv.setText("我是有底线的");
+                ((FootViewHolder) holder).mProgressBar.setVisibility(View.INVISIBLE);
+                if (mHomeFaceScoreColumn.size() <= 12) {
+                    //条目小于12就将加载更多条目隐藏
+                    ((FootViewHolder) holder).view.setVisibility(View.GONE);
+                } else {
+                    ((FootViewHolder) holder).tv.setText("我是有底线的");
+                }
+            }else {
+                ((FootViewHolder) holder).view.setVisibility(flag ? View.INVISIBLE : View.VISIBLE);
             }
-            ((FootViewHolder) holder).view.setVisibility(flag ? View.INVISIBLE : View.VISIBLE);
         } else {
 
         }
-    }
-
-    public void setVisibility() {
-        flag = false;
     }
 
     @Override

@@ -12,6 +12,7 @@ import butterknife.Unbinder;
 import leeyip.pandatv.base.BaseView;
 import leeyip.pandatv.ui.NavigateTabBar;
 import leeyip.pandatv.ui.home.fragment.HomeFragment;
+import leeyip.pandatv.ui.mine.fragment.MineFragment;
 import leeyip.pandatv.utils.ThemeUtils;
 import leeyip.pandatv.utils.ToastUtils;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements BaseView{
         mMainTabBar.addTab(HomeFragment.class,new NavigateTabBar.TabParam(R.drawable.column,R.drawable.column_pressed,TAG_PAGE_GAME));
         mMainTabBar.addTab(HomeFragment.class,new NavigateTabBar.TabParam(R.drawable.live,R.drawable.live_pressed,TAG_PAGE_LIVE));
         mMainTabBar.addTab(HomeFragment.class,new NavigateTabBar.TabParam(R.drawable.dynamic_tab_normal,R.drawable.dynamic_tab_selected,TAG_PAGE_DYNAMIC));
-        mMainTabBar.addTab(HomeFragment.class,new NavigateTabBar.TabParam(R.drawable.match,R.drawable.match_pressed,TAG_PAGE_MATCH));
+        mMainTabBar.addTab(MineFragment.class,new NavigateTabBar.TabParam(R.drawable.match,R.drawable.match_pressed,TAG_PAGE_MATCH));
         mMainTabBar.setTabSelectListener(holder -> {
             switch (holder.tag.toString()) {
 //                    首页

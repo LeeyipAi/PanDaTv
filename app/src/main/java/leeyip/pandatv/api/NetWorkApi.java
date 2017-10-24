@@ -38,7 +38,6 @@ public class NetWorkApi {
     //     列表详情
     public static final String getHomeCate = "/api/homeCate/getHotRoom";
 
-
     /**
      *   ********************************************************************
      */

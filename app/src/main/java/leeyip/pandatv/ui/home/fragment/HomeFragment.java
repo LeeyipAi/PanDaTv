@@ -17,6 +17,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import leeyip.pandatv.R;
+import leeyip.pandatv.Test2Activity;
+import leeyip.pandatv.TestActivity;
 import leeyip.pandatv.base.BaseFragment;
 import leeyip.pandatv.base.BaseView;
 import leeyip.pandatv.model.logic.home.HomeCateListModelLogic;
@@ -110,9 +112,11 @@ public class HomeFragment extends BaseFragment<HomeCateListModelLogic, HomeCateL
                 break;
             case R.id.img_scanner:
                 ToastUtils.showShort("scanner");
+                startActivity(new Intent(getActivity(), TestActivity.class));
                 break;
             case R.id.img_history:
                 ToastUtils.showShort("history");
+                startActivity(new Intent(getActivity(), Test2Activity.class));
                 break;
             case R.id.img_message:
                 ToastUtils.showShort("message");

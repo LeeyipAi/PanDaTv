@@ -34,4 +34,12 @@ public class HomeColumnMoreTwoCate {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "HomeColumnMoreTwoCate{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

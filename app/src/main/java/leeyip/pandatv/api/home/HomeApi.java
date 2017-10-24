@@ -106,4 +106,12 @@ public interface HomeApi {
     @GET(getHomeColumnMoreAllList + "{cate_id}")
     Observable<HttpResponse<List<HomeColumnMoreAllList>>> getHomeColumnMoreAllList(@Path("cate_id") String cate_id, @QueryMap Map<String, String> params);
 
+    /**
+     * 获取房间信息
+     *请求URL：
+     * http://capi.douyucdn.cn/api/v1/room/235520?aid=android1&client_sys=android&ne=1&support_pwd=1&time=1480501469&token=89175431_12_cd2cb4963d259081_1_54371072&auth=6fddd0d2e155255e923e208bebd7efb9
+     * 请求方式：Get * 请求参数： * client_sys：设备类型 默认为：Android * roomid:房间ID * time:unixtime/1000 * aid:设备标示 默认：Android1 * ne： 默认：1 * support_pwd： 默认：1 * token： 登录后获取token * auth: md5("room/"+roomid+"?aid=android&clientsys=android&time="+1231)注意：time要和上面一致，android也不能改成ios
+     */
+//    @GET(getRoomDetails + "{room_id}")
+//    Observable<HttpResponse<List<BaseResponse>>> getRoomDetails(@Path("room_id") String room_id, @QueryMap Map<String, String> params);
 }

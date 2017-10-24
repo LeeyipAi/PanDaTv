@@ -19,6 +19,8 @@ import leeyip.pandatv.R;
 import leeyip.pandatv.model.logic.home.bean.HomeFaceScoreColumn;
 import leeyip.pandatv.model.logic.home.bean.HomeHotColumn;
 import leeyip.pandatv.model.logic.home.bean.HomeRecommendHotCate;
+import leeyip.pandatv.ui.home.FullyGridLayoutManager;
+import leeyip.pandatv.ui.home.activity.HomeColumnMoreListActivity;
 import leeyip.pandatv.ui.home.activity.HomeRecommendFaceScoreActivity;
 
 /**
@@ -140,19 +142,19 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
      */
     private void bindAllColumnHolder(ColumnViewHolder holder, int position) {
         holder.img_column_icon.setImageResource(R.mipmap.icon_column);
-        holder.tv_column_name.setText(mHomeRecommendHotCate.get(position - 2).getTag_name());
+        holder.tv_column_name.setText(mHomeRecommendHotCate.get(position - 3).getTag_name());
         holder.rv_column_list.setLayoutManager(new GridLayoutManager(holder.rv_column_list.getContext(), 2, GridLayoutManager.VERTICAL, false));
-        mAllColumnAdapter = new HomeRecommendAllColumnAdapter(holder.rv_column_list.getContext(), mHomeRecommendHotCate.get(position - 2).getRoom_list());
+        mAllColumnAdapter = new HomeRecommendAllColumnAdapter(holder.rv_column_list.getContext(), mHomeRecommendHotCate.get(position - 3).getRoom_list());
         holder.rv_column_list.setAdapter(mAllColumnAdapter);
         holder.rl_column_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(context, HomeColumnMoreListActivity.class);
+                Intent intent = new Intent(context, HomeColumnMoreListActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("title", holder.tv_column_name.getText().toString());
-                bundle.putString("cate_id", mHomeRecommendHotCate.get(position - 2).getTag_id());
+                bundle.putString("cate_id", mHomeRecommendHotCate.get(position - 3).getTag_id());
                 intent.putExtras(bundle);
-                context.startActivity(intent);*/
+                context.startActivity(intent);
             }
         });
     }
@@ -190,8 +192,9 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
             return TYPE_1;
         } else if (position == 2) {
             return TYPE_2;
+        }else {
+            return TYPE_3;
         }
-        return TYPE_3;
     }
 
     @Override
@@ -235,7 +238,7 @@ public class HomeRecommendAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        return mHomeRecommendHotCate.size() + 2;
+        return mHomeRecommendHotCate.size() + 3;
     }
 
     public class ColumnViewHolder extends RecyclerView.ViewHolder {
