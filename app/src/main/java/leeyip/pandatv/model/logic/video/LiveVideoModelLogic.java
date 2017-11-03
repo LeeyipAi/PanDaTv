@@ -22,7 +22,7 @@ public class LiveVideoModelLogic implements LiveVideoContract.Model {
         return request;
     }
 
-    @Override
+    /*@Override
     public Request getModelRoomDetails(Context context, String room_id) {
         String path = "http://open.douyucdn.cn/api/RoomApi/room/" + room_id;
         System.out.println(path + "---------------------");
@@ -31,7 +31,7 @@ public class LiveVideoModelLogic implements LiveVideoContract.Model {
                 .get()
                 .build();
         return request;
-    }
+    }*/
 
 
 }

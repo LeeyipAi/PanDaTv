@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#f5f5f5"
+              android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_login"
+            android:background="#ffffff"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login_panda"
+                />
+            <ImageView
+                android:layout_toRightOf="@+id/iv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login_little_bamboo"
+                android:layout_marginLeft="90dp"
+                />
+
+            <Button
+                android:layout_toRightOf="@+id/iv1"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:textColor="#fff"
+                android:text="登录免费领竹子"
+                android:background="@drawable/shape_button"
+                />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login_bamboo_pressed"
+                android:layout_toRightOf="@+id/iv1"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="22dp"
+                />
+
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shu_close"/>
+
+        </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="#f8f8f8"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/input_icon"
+            />
+        <TextView
+            android:paddingLeft="12dp"
+            android:paddingRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_left_pressed"
+            android:text="高能"
+            android:textColor="#FFBF1F"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/barrage"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="登录发个弹幕呗~                  "
+            android:padding="9dp"
+            android:background="@drawable/shape_input_mid"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/campus_input_send_pressed"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/input_icon_gif"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

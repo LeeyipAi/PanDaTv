@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,7 +32,7 @@ public class Test2Activity extends AppCompatActivity {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return viewType == 0 ? new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.content, parent, false)) : new TwoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_header, parent, false));
+            return viewType == 0 ? new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_header, parent, false)) : new TwoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.content, parent, false));
         }
 
         @Override
@@ -57,7 +57,7 @@ public class Test2Activity extends AppCompatActivity {
             holder.mTabLayout.setupWithViewPager(holder.mViewPager);
         }
 
-        class MyViewHolder extends RecyclerView.ViewHolder {
+        public class MyViewHolder extends RecyclerView.ViewHolder {
 
             public MyViewHolder(View itemView) {
                 super(itemView);
@@ -71,12 +71,12 @@ public class Test2Activity extends AppCompatActivity {
             public TwoViewHolder(View itemView) {
                 super(itemView);
                 mTabLayout = (TabLayout) itemView.findViewById(R.id.tab);
-                mViewPager = (ViewPager) itemView.findViewById(R.id.viewpager);
+                mViewPager = (ViewPager) itemView.findViewById(R.id.vp);
             }
         }
     }
 
-    class Mapapter extends FragmentStatePagerAdapter {
+    class Mapapter extends FragmentPagerAdapter {
 
         public Mapapter(FragmentManager fm) {
             super(fm);

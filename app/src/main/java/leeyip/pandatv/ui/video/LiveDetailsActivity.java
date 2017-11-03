@@ -1,7 +1,9 @@
 package leeyip.pandatv.ui.video;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
 import com.bigkoo.svprogresshud.SVProgressHUD;
 
@@ -12,15 +14,20 @@ import leeyip.pandatv.R;
 import leeyip.pandatv.base.BaseActivity;
 import leeyip.pandatv.base.BaseView;
 import leeyip.pandatv.model.logic.video.LiveVideoModelLogic;
-import leeyip.pandatv.model.logic.video.bean.RoomDetailsInfo;
 import leeyip.pandatv.model.logic.video.bean.TempLiveVideoInfo;
 import leeyip.pandatv.presenter.video.impl.LiveVideoPresenter;
 import leeyip.pandatv.presenter.video.interfaces.LiveVideoContract;
+import leeyip.pandatv.ui.video.adapter.RoomPagerAdapter;
+import leeyip.pandatv.utils.TabLayoutHelper;
 
 public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveVideoPresenter> implements LiveVideoContract.View {
 
     @BindView(R.id.videoplayer)
     JZVideoPlayerStandard mVideoplayer;
+    @BindView(R.id.tab)
+    TabLayout mTab;
+    @BindView(R.id.vp)
+    ViewPager mVp;
     private SVProgressHUD mSvProgressHUD;
     private String Room_id;
     private String Room_name;
@@ -36,8 +43,9 @@ public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveV
         Room_id = getIntent().getExtras().getString("Room_id");
         Room_name = getIntent().getExtras().getString("Room_name");
         mPresenter.getPresenterPcLiveVideoInfo(Room_id);
-        mPresenter.getPresenterRoomDetails(Room_id);
         initTab();
+        JZVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;  //横向
+        JZVideoPlayer.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;  //纵向
     }
 
     @Override
@@ -68,7 +76,10 @@ public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveV
      * 初始化Tab
      */
     private void initTab() {
-
+        RoomPagerAdapter roomPagerAdapter = new RoomPagerAdapter(getSupportFragmentManager(), new String[]{"聊天", "主播", "排行", "车站"},Room_id);
+        mVp.setAdapter(roomPagerAdapter);
+        mTab.setupWithViewPager(mVp);
+        mTab.postDelayed(() -> TabLayoutHelper.setIndicator(mTab, LiveDetailsActivity.this, 20, 20), 1);
     }
 
     @Override
@@ -85,10 +96,4 @@ public class LiveDetailsActivity extends BaseActivity<LiveVideoModelLogic, LiveV
         });
 
     }
-
-    @Override
-    public void getRoomDetails(RoomDetailsInfo baseResponse) {
-        Log.e("输出",baseResponse.toString());
-    }
-
 }

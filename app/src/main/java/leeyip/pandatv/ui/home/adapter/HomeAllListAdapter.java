@@ -2,7 +2,7 @@ package leeyip.pandatv.ui.home.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import leeyip.pandatv.ui.home.fragment.RecommendHomeFragment;
  * Created by Administrator on 2017/9/20/020.
  */
 
-public class HomeAllListAdapter extends FragmentStatePagerAdapter {
+public class HomeAllListAdapter extends FragmentPagerAdapter {
 
     private List<HomeCateList> mHomeCateLists;
     private String[] mTiltle;
